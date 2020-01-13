@@ -174,6 +174,10 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     ruby_dep (1.5.0)
+    searchkick (4.2.0)
+      activemodel (>= 5)
+      elasticsearch (>= 6)
+      hashie
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -211,6 +215,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   puma (~> 4.1)
   rails (~> 6.0.1)
+  searchkick
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4)

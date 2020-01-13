@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  # include Elasticsearch::Model
+  # include Elasticsearch::Model::Callbacks
+  searchkick
   belongs_to :user
   has_many :comments
   has_many :taggings, dependent: :destroy
