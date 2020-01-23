@@ -13,9 +13,6 @@ gem "active_model_serializers", "~> 0.10.10"
 # Cloudinary Video Storage
 gem "cloudinary"
 
-# SearchKick elastic search interface
-gem 'searchkick'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.1'
 # Use sqlite3 as the database for Active Record

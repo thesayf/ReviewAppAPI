@@ -1,4 +1,5 @@
-ActiveRecord::Schema.define(version: 2020_01_07_154527) do
+
+ActiveRecord::Schema.define(version: 2020_01_08_155130) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"

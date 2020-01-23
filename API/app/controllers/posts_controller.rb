@@ -12,14 +12,25 @@ end
 
 def create_new_post
     videoURL = Cloudinary::Uploader.upload(params[:video], { api_key: "737968659967114", api_secret: "qpIy_ZDhLXISl7ror23rwIGVMzI", cloud_name: "dfqall5sk"})
-    created_post = Post.create(title: params[:title], description: params[:description], video: params[:videoURL], user_id: params[:user_id], latitude: params[:latitude], longitude: params[:longitude], address: params[:address] )
+    created_post = Post.create(title: params[:title], description: params[:description], video: params[:videoURL], user_id: params[:user_id], latitude: params[:latitude], longitude: params[:longitude], address: params[:address])
     created_post.all_tags = params[:tags]
     render json: created_post
 end
 
-def search_post
-    posts = params[:query].nil? ? [] : Post.search(params[:query])
-    render json: posts 
+def search_tags
+    tags = Tag.search(params[:query])
+    render json: tags
+end
+
+def search_posts_by_location
+    # posts = Post.search "*"
+    # posts = Post.search "*"
+    posts = Post.search 'nandos'
+    # fields: ["tags"]
+    # byebug
+    # posts = Post.search "resturaunt", where:{"tags.name" => "resturaunt"}
+#    posts = Post.search params[:query], where: {location: {near: {lat: 52, lon: -1}, within: "10mi"}}
+   render json: posts
 end
 
 
