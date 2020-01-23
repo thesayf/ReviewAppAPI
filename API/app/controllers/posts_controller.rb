@@ -25,7 +25,7 @@ end
 def search_posts_by_location
     # posts = Post.search "*"
     # posts = Post.search "*"
-    posts = Post.search 'nandos'
+    posts = Post.search(param[:query])
     # fields: ["tags"]
     # byebug
     # posts = Post.search "resturaunt", where:{"tags.name" => "resturaunt"}
