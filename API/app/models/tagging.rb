@@ -14,6 +14,6 @@ class Tagging < ApplicationRecord
   end
 
   def delete_post_index
-    post.delete_index
+    post.re_index
   end
 end

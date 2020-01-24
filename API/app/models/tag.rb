@@ -18,7 +18,7 @@ class Tag < ApplicationRecord
 
   def delete_posts_index
     posts.each do |post|
-      post.delete_index
+      post.re_index
     end
   end
 
