@@ -1,21 +1,6 @@
 # README
 
-This README is for the "to be named later" API 
-
-Things you may want to cover:
-
-* To start the API navigate to the into the api folder and run "rails s" to start
-
-* System dependencies
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Running Elastic Search
+* Download Elastic Search and run it on port `9200` preferably. confirm it is running with `curl -X GET "localhost:9200/?pretty"`
+* Create the index with this command `rake index:create` this would index Post, Tag and Tagging in the ES cluster
+*
