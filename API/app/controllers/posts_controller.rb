@@ -25,7 +25,10 @@ class PostsController < ApplicationController
   end
 
   def search_posts_by_location
-    posts = Post.search_by_tags_and_location(search_params)
+    tag = search_params.dig(:tag)
+    long = search_params.dig(:long)
+    lat = search_params.dig(:lat)
+    posts = Post.search_by_tags_and_location(tag: tag, long: long, lat: lat)
     render json: posts
   end
 
