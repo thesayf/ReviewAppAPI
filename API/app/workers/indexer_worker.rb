@@ -1,6 +1,7 @@
 class IndexerWorker
   include Sidekiq::Worker
-  sidekiq_options retries: false
+  sidekiq_options retries: 1, queue: 'critical'
+
 
   Logger = Sidekiq.logger.level == Logger::DEBUG ? Sidekiq.logger : nil
   Client = Elasticsearch::Client.new host: 'localhost:9200', logger: Logger

@@ -1,6 +1,6 @@
 class IndexAllWorker
   include Sidekiq::Worker
-  sidekiq_options retries: false
+  sidekiq_options retries: 1, queue: 'critical'
 
   def perform(models)
     return if models.empty?
