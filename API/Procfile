@@ -1,0 +1,4 @@
+elastic_search: $HOME/$ES_FOLDER_NAME/bin/elasticsearch
+redis: redis-server --port 6379
+worker: bundle exec sidekiq
+web: bundle exec rails s -p 3000
