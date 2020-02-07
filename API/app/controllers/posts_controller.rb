@@ -1,18 +1,20 @@
 class PostsController < ApplicationController
+  require 'open-uri'
 
   def index
       posts = Post.all
       render json: posts, include: [:user, :comments, :tags]
   end
 
-  def view_one_post
+  def show
       post = Post.find_by(id: params[:id])
       render json: post
   end
-
-  def create_new_post
-      videoURL = Cloudinary::Uploader.upload(params[:video], { api_key: "737968659967114", api_secret: "qpIy_ZDhLXISl7ror23rwIGVMzI", cloud_name: "dfqall5sk"})
-      created_post = Post.create(title: params[:title], description: params[:description], video: params[:videoURL], user_id: params[:user_id], latitude: params[:latitude], longitude: params[:longitude], address: params[:address])
+  
+  def create
+    byebug
+      videoURL = Cloudinary::Uploader.upload(File.open(params[:post][:video]), { api_key: "737968659967114", api_secret: "qpIy_ZDhLXISl7ror23rwIGVMzI", cloud_name: "dfqall5sk"})
+      created_post = Post.create(title: params[:title], description: params[:caption], video: params[:uri], user_id: params[:userId], latitude: params[:latitude], longitude: params[:longitude])
       created_post.all_tags = params[:tags]
       render json: created_post
   end
@@ -38,3 +40,5 @@ class PostsController < ApplicationController
     params.permit(:tag, :long, :lat)
   end
 end
+
+params[:tags][2]
