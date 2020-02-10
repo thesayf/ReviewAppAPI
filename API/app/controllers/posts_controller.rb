@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   require 'open-uri'
+  require 'json'
 
   def index
       posts = Post.all
@@ -10,12 +11,12 @@ class PostsController < ApplicationController
       post = Post.find_by(id: params[:id])
       render json: post
   end
-  
+
   def create
     byebug
       videoURL = Cloudinary::Uploader.upload(File.open(params[:post][:video]), { api_key: "737968659967114", api_secret: "qpIy_ZDhLXISl7ror23rwIGVMzI", cloud_name: "dfqall5sk"})
       created_post = Post.create(title: params[:title], description: params[:caption], video: params[:uri], user_id: params[:userId], latitude: params[:latitude], longitude: params[:longitude])
-      created_post.all_tags = params[:tags]
+      created_post.all_tags = JSON::parse(params['tags'])
       render json: created_post
   end
 
