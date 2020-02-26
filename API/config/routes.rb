@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "searchposts", to: 'posts#search_post'
   get "searchtags", to: 'posts#search_tags'
   get "searchtagsbylocation", to: 'posts#search_posts_by_location'
+  post '/set_current_user', to: 'users#login_current_user'
 
 
 
