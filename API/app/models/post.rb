@@ -29,7 +29,8 @@ class Post < ApplicationRecord
     self.as_json(
       options.merge(
         only: [:title, :description, :address, :video, :longitude, :latitude, :user_id],
-        include: { tags: { only: [:name] } }
+        include: { tags: { only: [:name] },
+      }
       )
     )
   end

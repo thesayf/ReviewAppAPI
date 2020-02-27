@@ -12,15 +12,19 @@ class PostsController < ApplicationController
       render json: post
   end
 
+  def view_one_users_posts
+    posts = Post.where(user_id: 1)
+    render json: posts
+  end
+
   def create
-    byebug
-      videoURL = Cloudinary::Uploader.upload(File.open(params[:post][:video]), { api_key: "737968659967114", api_secret: "qpIy_ZDhLXISl7ror23rwIGVMzI", cloud_name: "dfqall5sk"})
-      created_post = Post.create(title: params[:title], description: params[:caption], video: params[:uri], user_id: params[:userId], latitude: params[:latitude], longitude: params[:longitude])
+      videoURL = Cloudinary::Uploader.upload(File.open(params[:image]), { api_key: "737968659967114", api_secret: "qpIy_ZDhLXISl7ror23rwIGVMzI", cloud_name: "dfqall5sk"})
+      created_post = Post.create(title: params[:title], description: params[:description], video: videoURL["url"], user_id: 1, latitude: params[:latitude], longitude: params[:longitude])
       created_post.all_tags = JSON::parse(params['tags'])
       render json: created_post
   end
 
-  def search_tags
+  def search_posts_by_tags
     # You probably want to put this in a service and the result re-used
     tag = search_params.dig(:tag)
     tags = Post.search_by_tags(tag)
@@ -41,5 +45,3 @@ class PostsController < ApplicationController
     params.permit(:tag, :long, :lat)
   end
 end
-
-params[:tags][2]

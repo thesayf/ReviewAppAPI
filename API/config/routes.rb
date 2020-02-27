@@ -16,9 +16,10 @@ Rails.application.routes.draw do
   post "unfollowuser", to: 'user#unfollow_user'
   get "all_followers", to: 'user#all_followers'
   get "all_followed_users", to: 'user#all_followed_users'
-  get "searchposts", to: 'posts#search_post'
+  post "searchposts", to: 'posts#search_posts_by_tags'
   get "searchtags", to: 'posts#search_tags'
   get "searchtagsbylocation", to: 'posts#search_posts_by_location'
+  get "getUsersPosts/:id", to: 'posts#view_one_users_posts'
 
 
 
