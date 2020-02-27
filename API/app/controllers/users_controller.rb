@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-    # skip_before_action :authorize, only: [:set_current_user]
+    skip_before_action :authorize, only: [:index]
 
 
     def index
         users = User.all
-        render json: users
+        # render json: users, except: :posts
+        render json: { users: users.as_json( except: :posts) }
     end
 
     def view_one_user
