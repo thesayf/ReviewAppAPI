@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   require 'open-uri'
   require 'json'
-  skip_before_action :authorize, only: [:create, :search_tags, :index, :show] 
+  skip_before_action :authorize, only: [:create, :search_posts_by_tags, :index, :show] 
 
   def index
       posts = Post.all
