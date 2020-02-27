@@ -33,6 +33,7 @@ class ApplicationController < ActionController::API
   end
 
   def authorize
+    
     if !logged_in
         return render json: { error: 'you must be logged in'}, status: :unauthorized
     end
