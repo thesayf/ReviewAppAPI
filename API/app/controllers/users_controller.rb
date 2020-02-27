@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
+    skip_before_action :authorize, only: [:index]
+
 
     def index
         users = User.all
-        render json: users
+        # render json: users, except: :posts
+        render json: { users: users.as_json( except: :posts) }
     end
 
     def view_one_user
@@ -34,5 +37,17 @@ class UsersController < ApplicationController
         render json: all_followed_users
     end
 
+    def login_current_user
+        if @current_user
+            render json: { user: @current_user }, status: :accepted
+        else
+            user = User.create_user_from_google_credentials(decode_token(params[:_json]))
+            if user
+                render json: { user: user }
+            else
+                render json: { error: "couldn't create user" }
+            end
+        end
+    end
 
 end
